@@ -5,8 +5,15 @@
 **Aluno:** Jucinara da Silva Melo  
 **Matrícula:** 20240001180  
 **Disciplina:** ECT3699 – Desenvolvimento Web FrontEnd  
-**Professor:** Dr. Aquiles Burlamaqui
+**Professor:** Dr. Aquiles Burlamaqui  
+
 **Período:** 2026.1
+
+---
+
+# Psico Agenda
+
+**Organização clínica e acompanhamento psicológico em um único lugar**
 
 ---
 
