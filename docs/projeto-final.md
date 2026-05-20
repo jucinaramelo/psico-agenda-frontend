@@ -6,7 +6,7 @@
 **Matrícula:** 20240001180  
 **Disciplina:** ECT3699 – Desenvolvimento Web FrontEnd  
 **Professor:** Dr. Aquiles Burlamaqui
-**Professor:** 2026.1
+**Período:** 2026.1
 
 ---
 
