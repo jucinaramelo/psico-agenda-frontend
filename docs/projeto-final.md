@@ -16,12 +16,6 @@
 
 ---
 
-# Psico Agenda
-
-**Organização clínica e acompanhamento psicológico em um único lugar**
-
----
-
 ## 2. Descrição Geral
 
 O Psico Agenda é uma aplicação web desenvolvida para auxiliar psicólogos no gerenciamento de informações relacionadas ao acompanhamento de pacientes. O sistema tem como objetivo centralizar dados clínicos e facilitar o registro das atividades realizadas durante os atendimentos.
