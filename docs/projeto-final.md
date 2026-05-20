@@ -5,7 +5,8 @@
 **Aluno:** Jucinara da Silva Melo  
 **Matrícula:** 20240001180  
 **Disciplina:** ECT3699 – Desenvolvimento Web FrontEnd  
-**Professor:** Dr. Aquiles Burlamaqui  
+**Professor:** Dr. Aquiles Burlamaqui
+**Professor:** 2026.1
 
 ---
 
