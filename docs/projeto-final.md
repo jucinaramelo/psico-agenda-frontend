@@ -134,11 +134,21 @@ Como psicólogo, eu quero registrar consultas para organizar atendimentos.
 
 Como psicólogo, eu quero pesquisar pacientes pelo nome para encontrá-los rapidamente.
 
+**Critérios de aceitação:**
+
+- O sistema deve permitir pesquisar pacientes pelo nome.
+- A lista deve ser filtrada automaticamente conforme a digitação.
+
 ---
 
 **NICE-02 – Tema escuro**
 
 Como usuário, eu quero alternar entre tema claro e escuro para melhorar a experiência de uso.
+
+**Critérios de aceitação:**
+
+- O usuário deve conseguir alternar entre tema claro e escuro.
+- A preferência de tema deve permanecer salva localmente.
 
 ---
 
@@ -146,11 +156,21 @@ Como usuário, eu quero alternar entre tema claro e escuro para melhorar a exper
 
 Como psicólogo, eu quero exportar informações do paciente para gerar documentos de acompanhamento.
 
+**Critérios de aceitação:**
+
+- O sistema deve permitir gerar um resumo com informações do paciente.
+- O conteúdo exportado deve incluir dados clínicos básicos.
+
 ---
 
 **NICE-04 – Dashboard inicial**
 
 Como psicólogo, eu quero visualizar um resumo geral para acompanhar pacientes e consultas.
+
+**Critérios de aceitação:**
+
+- O dashboard deve exibir quantidade de pacientes cadastrados.
+- O sistema deve mostrar quantidade de consultas.
 
 ---
 
@@ -158,28 +178,32 @@ Como psicólogo, eu quero visualizar um resumo geral para acompanhar pacientes e
 
 Como psicólogo, eu quero visualizar consultas anteriores para acompanhar atendimentos já realizados.
 
+**Critérios de aceitação:**
+
+- O sistema deve listar consultas anteriores do paciente.
+- As consultas devem exibir data e observações registradas.
+
 ---
 
 ## 5. Mapa do Site 
 
 ```text
-/                               # pública (landing)
+/                                   # pública (landing)
 │
-├── /pacientes                  # protegida
+├── /dashboard                      # protegida
+│
+├── /pacientes                      # protegida
 │   ├── /pacientes/novo
-│   └── /pacientes/:id          # dinâmica
-│       │
-│       ├── /anamnese/:id
-│       ├── /evolucao/:id
-│       └── /historico/:id
+│   └── /pacientes/:id              # dinâmica
+│       ├── /pacientes/:id/anamnese
+│       ├── /pacientes/:id/evolucao
+│       └── /pacientes/:id/historico
 │
-├── /agenda                     # protegida
+├── /agenda                         # protegida
 │   ├── /agenda/nova
 │   └── /agenda/lista
 │
-├── /dashboard                  # protegida
-│
-└── /404                        # pública
+└── /404                            # pública
 ```
 
 ---
@@ -218,3 +242,107 @@ A tela é destinada ao preenchimento e armazenamento da anamnese do paciente.
 
 A tela apresenta o histórico de evolução e acompanhamento clínico do paciente.
 
+---
+
+## 7. Stack Técnica
+
+O projeto será desenvolvido utilizando React. A aplicação seguirá o modelo SPA (Single Page Application).
+
+### Tecnologias previstas
+
+- React 18+
+- Vite
+- React Router DOM
+- CSS
+- LocalStorage
+- Git e GitHub
+
+### Justificativa das escolhas
+
+**React:** utilizado para construção da interface e componentização.
+
+**React Router DOM:** responsável pela navegação entre páginas como pacientes, anamnese, evolução e agenda.
+
+**CSS:** utilizado para estilização da interface.
+
+**LocalStorage:** armazenamento local dos dados durante o desenvolvimento inicial.
+
+**Git/GitHub:** versionamento e armazenamento do projeto.
+
+---
+
+## 8. Fontes de Dados
+
+Os dados serão armazenados localmente utilizando o LocalStorage.
+
+Fonte principal:
+
+- LocalStorage
+
+Estrutura prevista:
+
+- Pacientes
+- Anamneses
+- Evoluções
+- Consultas
+
+---
+
+## 9. Riscos e Atenções
+
+### Risco 1 – Crescimento do escopo
+
+O projeto pode receber funcionalidades extras além do planejado.
+
+Mitigação:
+
+- Priorizar as funcionalidades MUST
+- Implementar NICE apenas se houver tempo
+
+### Risco 2 – Organização das telas
+
+O aumento de páginas pode dificultar a navegação.
+
+Mitigação:
+
+- Separar componentes
+- Utilizar rotas organizadas
+
+### Risco 3 – Persistência de dados
+
+O LocalStorage possui limitações.
+
+Mitigação:
+
+- Avaliar integração futura
+
+### Risco 4 – Tempo de implementação
+
+A quantidade de funcionalidades clínicas pode aumentar o tempo do projeto.
+
+Mitigação:
+
+- Dividir o desenvolvimento por etapas
+- Priorizar entregas pequenas
+
+---
+
+## 10. Cronograma Pessoal
+
+| Semana | Atividade |
+|---------|-----------|
+| Semana 1 | Definição do projeto, documentação e wireframes |
+| Semana 2 | Construção das telas principais e configuração das rotas |
+| Semana 3 | Implementação do cadastro e listagem de pacientes |
+| Semana 4 | Desenvolvimento da anamnese e visualização dos detalhes do paciente |
+| Semana 5 | Implementação das evoluções e histórico clínico |
+| Semana 6 | Desenvolvimento da agenda e consultas |
+| Semana 7 | Testes, ajustes finais e revisão da documentação |
+
+---
+
+## 11. Declaração de Uso de Inteligência Artificial
+
+Ferramentas de Inteligência Artificial foram utilizadas como apoio durante a elaboração da documentação, organização das ideias e esclarecimento de dúvidas técnicas relacionadas ao desenvolvimento do projeto.
+
+O uso dessas ferramentas teve caráter assistivo, sendo que as decisões de projeto, definição das funcionalidades, elaboração dos wireframes e organização da aplicação foram realizadas pela autora do trabalho.
