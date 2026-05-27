@@ -188,22 +188,24 @@ Como psicólogo, eu quero visualizar consultas anteriores para acompanhar atendi
 ## 5. Mapa do Site 
 
 ```text
-/                                   # pública (landing)
+📁 Psico Agenda
 │
-├── /dashboard                      # protegida
+├── 📄 Home (/)                           # pública
 │
-├── /pacientes                      # protegida
-│   ├── /pacientes/novo
-│   └── /pacientes/:id              # dinâmica
-│       ├── /pacientes/:id/anamnese
-│       ├── /pacientes/:id/evolucao
-│       └── /pacientes/:id/historico
+├── 📊 Dashboard (/dashboard)                     # protegida
 │
-├── /agenda                         # protegida
-│   ├── /agenda/nova
-│   └── /agenda/lista
+├── 👥 Pacientes (/pacientes)                     # protegida
+│   ├── 📄 Novo Paciente (/pacientes/novo)
+│   └── 📄 Detalhes do Paciente (/pacientes/:id)  # dinâmica
+│       ├── 📝 Anamnese (/pacientes/:id/anamnese)
+│       ├── 📋 Evolução (/pacientes/:id/evolucao)
+│       └── 🕘 Histórico (/pacientes/:id/historico)
 │
-└── /404                            # pública
+├── 📅 Agenda (/agenda)                           # protegida
+│   ├── 📄 Nova Consulta (/agenda/nova)
+│   └── 📋 Lista de Consultas (/agenda/lista)
+│
+└── ❌ Página Não Encontrada (/404)               # pública
 ```
 
 ---
