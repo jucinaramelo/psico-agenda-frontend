@@ -4,7 +4,7 @@
 
 **Aluno:** Jucinara da Silva Melo  
 **Matrícula:** 20240001180  
-**Disciplina:** ECT3699 – Desenvolvimento Web FrontEnd  
+**Disciplina:** ECT3699 – DESENVOLVIMENTO WEB FRONTEND  
 **Professor:** Dr. Aquiles Burlamaqui  
 **Período:** 2026.1
 
@@ -347,4 +347,4 @@ Mitigação:
 
 Ferramentas de Inteligência Artificial foram utilizadas como apoio durante a elaboração da documentação, organização das ideias e esclarecimento de dúvidas técnicas relacionadas ao desenvolvimento do projeto.
 
-O uso dessas ferramentas teve caráter assistivo, sendo que as decisões de projeto, definição das funcionalidades, elaboração dos wireframes e organização da aplicação foram realizadas pela autora do trabalho.
+O uso dessas ferramentas teve caráter assistivo, sendo que as decisões de projeto, definição das funcionalidades, elaboração dos wireframes e organização da aplicação foram realizadas e revisadas pela autora do projeto.
