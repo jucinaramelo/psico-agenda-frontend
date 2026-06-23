@@ -8,15 +8,16 @@ function Home() {
       <Navbar />
 
       <main className="home">
-        <section className="home-content">
+        <section className="home-hero">
           <div className="home-text">
-            <span className="home-badge">Gestão clínica simples e organizada</span>
-
-            <h1>Organize seus atendimentos psicológicos em um só lugar</h1>
+            <h1>
+              Mais organização para seus atendimentos psicológicos
+            </h1>
 
             <p>
-              Cadastre pacientes, registre anamneses, acompanhe evoluções
-              clínicas e organize sua agenda de consultas de forma prática.
+              O Psico Agenda ajuda a cadastrar pacientes, registrar anamneses,
+              acompanhar evoluções clínicas e organizar consultas em uma única
+              plataforma.
             </p>
 
             <div className="home-actions">
@@ -24,39 +25,47 @@ function Home() {
                 Começar agora
               </Link>
 
-              <Link to="/dashboard" className="home-link">
+              <Link to="/dashboard" className="home-secondary-button">
                 Ver dashboard
               </Link>
             </div>
           </div>
 
-          <div className="home-card">
-            <div className="card-header">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+          <div className="home-panel">
+            <h2>Tudo em um só lugar</h2>
 
-            <div className="card-body">
-              <h3>Resumo do dia</h3>
+            <div className="home-features">
+              <Link to="/pacientes" className="home-feature-card">
+                <span>👤</span>
+                <div>
+                  <strong>Pacientes</strong>
+                  <p>Cadastre e consulte informações importantes.</p>
+                </div>
+              </Link>
 
-              <div className="info-box">
-                <p>Consultas agendadas</p>
-                <strong>05</strong>
+              <div className="home-feature-card">
+                <span>📝</span>
+                <div>
+                  <strong>Anamnese</strong>
+                  <p>Registre dados iniciais do atendimento.</p>
+                </div>
               </div>
 
-              <div className="info-box">
-                <p>Pacientes cadastrados</p>
-                <strong>18</strong>
+              <div className="home-feature-card">
+                <span>📈</span>
+                <div>
+                  <strong>Evoluções</strong>
+                  <p>Acompanhe o progresso de cada paciente.</p>
+                </div>
               </div>
 
-              <div className="patient-preview">
-                <div></div>
-                <section>
-                  <strong>Ana Beatriz</strong>
-                  <p>Próxima consulta às 14h</p>
-                </section>
-              </div>
+              <Link to="/agenda" className="home-feature-card">
+                <span>📅</span>
+                <div>
+                  <strong>Agenda</strong>
+                  <p>Organize consultas e compromissos.</p>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
