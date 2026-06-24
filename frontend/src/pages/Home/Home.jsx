@@ -8,64 +8,53 @@ function Home() {
       <Navbar />
 
       <main className="home">
-        <section className="home-hero">
-          <div className="home-text">
-            <h1>
-              Mais organização para seus atendimentos psicológicos
-            </h1>
+        <section className="home-content">
+          <span className="home-tag">Psico Agenda</span>
 
-            <p>
-              O Psico Agenda ajuda a cadastrar pacientes, registrar anamneses,
-              acompanhar evoluções clínicas e organizar consultas em uma única
-              plataforma.
-            </p>
+          <h1>
+            Sua rotina de atendimentos
+            <br />
+            mais leve e organizada
+          </h1>
 
-            <div className="home-actions">
-              <Link to="/pacientes" className="home-button">
-                Começar agora
-              </Link>
+          <p>
+            Gerencie pacientes, registre anamneses, acompanhe evoluções
+            clínicas e organize suas consultas em um só lugar.
+          </p>
 
-              <Link to="/dashboard" className="home-secondary-button">
-                Ver dashboard
-              </Link>
-            </div>
+          <div className="home-actions">
+            <Link to="/pacientes" className="home-button">
+              Começar agora
+            </Link>
+
+            <Link to="/dashboard" className="home-link">
+              Dashboard
+            </Link>
           </div>
 
-          <div className="home-panel">
-            <h2>Tudo em um só lugar</h2>
+          <div className="home-features">
+            <div className="feature-card">
+              <span>👤</span>
+              <h3>Pacientes</h3>
+              <p>Cadastro e gerenciamento de pacientes.</p>
+            </div>
 
-            <div className="home-features">
-              <Link to="/pacientes" className="home-feature-card">
-                <span>👤</span>
-                <div>
-                  <strong>Pacientes</strong>
-                  <p>Cadastre e consulte informações importantes.</p>
-                </div>
-              </Link>
+            <div className="feature-card">
+              <span>📝</span>
+              <h3>Anamnese</h3>
+              <p>Registro completo das informações iniciais.</p>
+            </div>
 
-              <div className="home-feature-card">
-                <span>📝</span>
-                <div>
-                  <strong>Anamnese</strong>
-                  <p>Registre dados iniciais do atendimento.</p>
-                </div>
-              </div>
+            <div className="feature-card">
+              <span>📈</span>
+              <h3>Evoluções</h3>
+              <p>Acompanhamento da evolução clínica.</p>
+            </div>
 
-              <div className="home-feature-card">
-                <span>📈</span>
-                <div>
-                  <strong>Evoluções</strong>
-                  <p>Acompanhe o progresso de cada paciente.</p>
-                </div>
-              </div>
-
-              <Link to="/agenda" className="home-feature-card">
-                <span>📅</span>
-                <div>
-                  <strong>Agenda</strong>
-                  <p>Organize consultas e compromissos.</p>
-                </div>
-              </Link>
+            <div className="feature-card">
+              <span>📅</span>
+              <h3>Agenda</h3>
+              <p>Organização de consultas e horários.</p>
             </div>
           </div>
         </section>

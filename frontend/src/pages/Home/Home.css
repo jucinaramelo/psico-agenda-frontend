@@ -1,39 +1,55 @@
 .home {
   min-height: calc(100vh - 70px);
+
   background:
-    radial-gradient(circle at top left, rgba(99, 102, 241, 0.08), transparent 30%),
+    radial-gradient(
+      circle at top left,
+      rgba(99, 102, 241, 0.08),
+      transparent 30%
+    ),
     var(--background);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 4rem 3rem;
+  padding: 5rem 2rem;
 }
 
-.home-hero {
-  width: 100%;
-  max-width: 1220px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 4rem;
+.home-content {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.home-text h1 {
+.home-tag {
+  display: inline-block;
+
+  padding: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  color: var(--text-light);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.home-content h1 {
+  max-width: 750px;
+
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05;
+
   color: var(--text);
 
-  font-size: clamp(3rem, 5vw, 5rem);
-  line-height: 1.05;
   font-weight: 800;
-  letter-spacing: -2.5px;
+  letter-spacing: -2px;
 
   margin-bottom: 1.5rem;
 }
 
-.home-text p {
-  max-width: 620px;
+.home-content p {
+  max-width: 650px;
 
   color: var(--text-light);
 
@@ -43,21 +59,22 @@
 
 .home-actions {
   display: flex;
-  align-items: center;
   gap: 1rem;
 
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .home-button,
-.home-secondary-button {
+.home-link {
+  text-decoration: none;
+
   padding: 1rem 1.5rem;
+
   border-radius: 14px;
 
-  text-decoration: none;
-  font-weight: 800;
+  font-weight: 700;
 
-  transition: 0.25s ease;
+  transition: 0.25s;
 }
 
 .home-button {
@@ -69,130 +86,77 @@
 
 .home-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 36px rgba(99, 102, 241, 0.32);
 }
 
-.home-secondary-button {
+.home-link {
   background: var(--surface);
-  color: var(--text);
 
   border: 1px solid var(--border);
+
+  color: var(--text);
 }
 
-.home-secondary-button:hover {
-  color: var(--primary);
+.home-link:hover {
   border-color: var(--primary);
-}
-
-.home-panel {
-  background: rgba(255, 255, 255, 0.94);
-
-  border: 1px solid var(--border);
-  border-radius: 28px;
-
-  padding: 2rem;
-
-  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
-}
-
-.home-panel h2 {
-  color: var(--text);
-
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  color: var(--primary);
 }
 
 .home-features {
+  margin-top: 5rem;
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
-.home-feature-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-
-  padding: 1.2rem;
-
-  background: var(--background);
-
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  text-decoration: none;
-
-  transition: 0.25s ease;
-}
-
-.home-feature-card:hover {
-  transform: translateY(-4px);
-  background: var(--primary-light);
-}
-
-.home-feature-card span {
-  width: 46px;
-  height: 46px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.feature-card {
   background: var(--surface);
 
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 22px;
 
-  font-size: 1.3rem;
+  padding: 2rem;
+
+  transition: 0.25s;
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
 }
 
-.home-feature-card strong {
-  display: block;
+.feature-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.feature-card span {
+  font-size: 2rem;
+}
+
+.feature-card h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 
   color: var(--text);
-  font-size: 1rem;
-
-  margin-bottom: 0.3rem;
 }
 
-.home-feature-card p {
-  color: var(--text-light);
-
-  font-size: 0.9rem;
-  line-height: 1.5;
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 900px) {
-  .home {
-    padding: 3rem 1.5rem;
-  }
-
-  .home-hero {
-    grid-template-columns: 1fr;
-  }
-
-  .home-text {
-    text-align: center;
-  }
-
-  .home-text p {
-    margin: 0 auto;
-  }
-
-  .home-actions {
-    justify-content: center;
+  .home-features {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .home-actions {
-    flex-direction: column;
-    align-items: stretch;
+  .home {
+    padding: 3rem 1.2rem;
   }
 
-  .home-button,
-  .home-secondary-button {
-    text-align: center;
+  .home-actions {
+    flex-direction: column;
   }
 
   .home-features {
