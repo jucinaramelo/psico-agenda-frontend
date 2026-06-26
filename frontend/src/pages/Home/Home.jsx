@@ -9,27 +9,27 @@ function Home() {
 
       <main className="home">
         <section className="home-content">
-          <span className="home-tag">Psico Agenda</span>
+          <div className="home-text">
+            <h1>
+              Sua rotina de atendimentos
+              <br />
+              mais leve e organizada
+            </h1>
 
-          <h1>
-            Sua rotina de atendimentos
-            <br />
-            mais leve e organizada
-          </h1>
+            <p>
+              Gerencie pacientes, registre anamneses, acompanhe evoluções
+              clínicas e organize suas consultas em um só lugar.
+            </p>
 
-          <p>
-            Gerencie pacientes, registre anamneses, acompanhe evoluções
-            clínicas e organize suas consultas em um só lugar.
-          </p>
+            <div className="home-actions">
+              <Link to="/pacientes" className="home-button">
+                Começar agora
+              </Link>
 
-          <div className="home-actions">
-            <Link to="/pacientes" className="home-button">
-              Começar agora
-            </Link>
-
-            <Link to="/dashboard" className="home-link">
-              Dashboard
-            </Link>
+              <Link to="/dashboard" className="home-link">
+                Dashboard
+              </Link>
+            </div>
           </div>
 
           <div className="home-features">

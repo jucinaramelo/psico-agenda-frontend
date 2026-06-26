@@ -13,43 +13,39 @@
 }
 
 .home-content {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.home-tag {
-  display: inline-block;
+.home-text {
+  width: 100%;
+  max-width: 900px;
 
-  padding: 0.6rem 1rem;
-  margin-bottom: 1.5rem;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 999px;
-
-  color: var(--text-light);
-
-  font-size: 0.9rem;
-  font-weight: 600;
+  text-align: center;
 }
 
-.home-content h1 {
-  max-width: 750px;
+.home-text h1 {
+  max-width: 850px;
+
+  margin: 0 auto 1.8rem;
+
+  color: var(--text);
 
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1.05;
 
-  color: var(--text);
-
   font-weight: 800;
   letter-spacing: -2px;
-
-  margin-bottom: 1.5rem;
 }
 
-.home-content p {
-  max-width: 650px;
+.home-text p {
+  max-width: 700px;
+
+  margin: 0 auto;
 
   color: var(--text-light);
 
@@ -59,9 +55,11 @@
 
 .home-actions {
   display: flex;
+  justify-content: center;
+
   gap: 1rem;
 
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .home-button,
@@ -102,7 +100,9 @@
 }
 
 .home-features {
-  margin-top: 5rem;
+  width: 100%;
+
+  margin-top: 4rem;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -140,6 +140,8 @@
 }
 
 .feature-card p {
+  color: var(--text-light);
+
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -157,6 +159,12 @@
 
   .home-actions {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .home-button,
+  .home-link {
+    text-align: center;
   }
 
   .home-features {
