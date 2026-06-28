@@ -5,6 +5,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Pacientes from "../pages/Pacientes/Pacientes";
 import NovoPaciente from "../pages/NovoPaciente/NovoPaciente";
 import DetalhesPaciente from "../pages/DetalhesPaciente/DetalhesPaciente";
+import Anamnese from "../pages/Anamnese/Anamnese";
 import Agenda from "../pages/Agenda/Agenda";
 import NotFound from "../pages/NotFound/NotFound";
 
@@ -22,6 +23,9 @@ function AppRoutes() {
         <Route path="/pacientes" element={<Pacientes />} />
         <Route path="/pacientes/novo" element={<NovoPaciente />} />
         <Route path="/pacientes/:id" element={<DetalhesPaciente />} />
+
+        {/* Anamnese */}
+        <Route path="/pacientes/:id/anamnese" element={<Anamnese />} />
 
         {/* Agenda */}
         <Route path="/agenda" element={<Agenda />} />

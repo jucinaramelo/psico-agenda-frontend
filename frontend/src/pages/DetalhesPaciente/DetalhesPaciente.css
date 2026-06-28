@@ -12,11 +12,8 @@
 .voltar-button {
   display: inline-block;
   margin-bottom: 2rem;
-
   color: var(--text-light);
   font-weight: 600;
-  text-decoration: none;
-
   transition: .2s;
 }
 
@@ -34,7 +31,6 @@
   border-radius: 20px;
 
   padding: 2rem;
-
   margin-bottom: 2rem;
 
   box-shadow: 0 8px 24px rgba(15, 23, 42, .05);
@@ -45,8 +41,8 @@
   height: 80px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   border-radius: 50%;
 
@@ -55,6 +51,12 @@
 
   font-size: 2rem;
   font-weight: 700;
+
+  flex-shrink: 0;
+}
+
+.paciente-header-info {
+  flex: 1;
 }
 
 .paciente-header h1 {
@@ -65,18 +67,15 @@
 
 .paciente-header p {
   color: var(--text-light);
-  font-size: 1rem;
 }
 
 .info-card,
 .modulos-card {
   background: var(--surface);
-
   border: 1px solid var(--border);
   border-radius: 20px;
 
   padding: 2rem;
-
   margin-bottom: 2rem;
 
   box-shadow: 0 8px 24px rgba(15,23,42,.05);
@@ -93,7 +92,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-
   margin-bottom: 2rem;
 }
 
@@ -105,7 +103,7 @@
 .info-item span {
   font-size: .85rem;
   color: var(--text-light);
-  margin-bottom: .4rem;
+  margin-bottom: .45rem;
 }
 
 .info-item strong {
@@ -116,10 +114,8 @@
 
 .observacoes span {
   display: block;
-
   color: var(--text-light);
   font-size: .85rem;
-
   margin-bottom: .5rem;
 }
 
@@ -134,11 +130,15 @@
   color: var(--text);
 
   line-height: 1.6;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .modulos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 1.2rem;
 }
 
@@ -149,8 +149,6 @@
   border-radius: 16px;
 
   padding: 1.5rem;
-
-  text-decoration: none;
 
   transition: .2s;
 }
@@ -163,37 +161,135 @@
 .modulo-card h3 {
   color: var(--text);
   margin-bottom: .7rem;
-  font-size: 1.1rem;
 }
 
 .modulo-card p {
   color: var(--text-light);
-  font-size: .95rem;
   line-height: 1.5;
 }
 
 .actions {
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
 }
 
-.editar-button {
-  background: var(--primary);
-  color: white;
+.editar-button,
+.salvar-button,
+.cancelar-button {
+  border: none;
 
-  padding: .9rem 1.5rem;
+  padding: .9rem 1.6rem;
 
   border-radius: 12px;
 
-  text-decoration: none;
+  cursor: pointer;
+
+  font-size: .95rem;
   font-weight: 600;
 
   transition: .2s;
 }
 
-.editar-button:hover {
+.editar-button,
+.salvar-button {
+  background: var(--primary);
+  color: white;
+}
+
+.editar-button:hover,
+.salvar-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(99,102,241,.25);
+}
+
+.cancelar-button {
+  background: white;
+  color: var(--text);
+
+  border: 1px solid var(--border);
+}
+
+.cancelar-button:hover {
+  background: #f5f5f5;
+}
+
+.titulo-input {
+  width: 100%;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  padding: .7rem 1rem;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: white;
+}
+
+.linha-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin-top: .8rem;
+}
+
+.small-input {
+  width: 90px;
+
+  padding: .7rem;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: white;
+}
+
+.linha-header select,
+.info-item input {
+  padding: .8rem 1rem;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  background: white;
+}
+
+.info-item input {
+  width: 100%;
+}
+
+.observacoes textarea {
+  width: 100%;
+  min-height: 140px;
+
+  padding: 1rem;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  resize: vertical;
+
+  background: white;
+
+  font-family: inherit;
+  font-size: .95rem;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.titulo-input:focus,
+.small-input:focus,
+.info-item input:focus,
+.linha-header select:focus,
+.observacoes textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
 }
 
 @media (max-width: 768px) {
@@ -205,7 +301,15 @@
   .paciente-header {
     flex-direction: column;
     align-items: flex-start;
-    text-align: left;
+  }
+
+  .linha-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .small-input {
+    width: 100%;
   }
 
   .info-grid {
@@ -217,10 +321,12 @@
   }
 
   .actions {
-    justify-content: stretch;
+    flex-direction: column;
   }
 
-  .editar-button {
+  .editar-button,
+  .salvar-button,
+  .cancelar-button {
     width: 100%;
     text-align: center;
   }

@@ -28,14 +28,39 @@ export function adicionarPaciente(paciente) {
 
 export function buscarPacientePorId(id) {
   const pacientes = getPacientes();
-  return pacientes.find((paciente) => paciente.id === Number(id));
+
+  return pacientes.find(
+    (paciente) => paciente.id === Number(id)
+  );
 }
 
 export function removerPaciente(id) {
   const pacientes = getPacientes();
+
   const pacientesAtualizados = pacientes.filter(
     (paciente) => paciente.id !== Number(id)
   );
 
   salvarPacientes(pacientesAtualizados);
+}
+
+export function atualizarPaciente(id, dadosAtualizados) {
+  const pacientes = getPacientes();
+
+  const pacientesAtualizados = pacientes.map((paciente) => {
+    if (paciente.id === Number(id)) {
+      return {
+        ...paciente,
+        ...dadosAtualizados,
+      };
+    }
+
+    return paciente;
+  });
+
+  salvarPacientes(pacientesAtualizados);
+
+  return pacientesAtualizados.find(
+    (paciente) => paciente.id === Number(id)
+  );
 }

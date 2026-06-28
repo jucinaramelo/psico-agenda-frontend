@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Navbar from "../../components/Navbar/Navbar";
-import { getPacientes } from "../../services/pacienteService";
+import {
+  getPacientes,
+  atualizarPaciente,
+} from "../../services/pacienteService";
 
 import "./DetalhesPaciente.css";
+import { toast } from "react-toastify";
 
 function DetalhesPaciente() {
   const { id } = useParams();
 
   const [paciente, setPaciente] = useState(null);
+  const [editando, setEditando] = useState(false);
 
   useEffect(() => {
     const pacientes = getPacientes();
@@ -20,6 +25,14 @@ function DetalhesPaciente() {
 
     setPaciente(encontrado);
   }, [id]);
+
+  function salvarPaciente() {
+    atualizarPaciente(paciente.id, paciente);
+
+    setEditando(false);
+
+    toast.success("Paciente atualizado com sucesso!");
+  }
 
   if (!paciente) {
     return (
@@ -59,27 +72,69 @@ function DetalhesPaciente() {
 
           <section className="paciente-header">
 
-            <div
-              className="paciente-avatar"
-              style={{
-                backgroundColor: "#e1d7f7", 
-                borderRadius: "50%",        
-                color: "#6a1b9a",          
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
+            <div className="paciente-avatar">
               {paciente.nome.charAt(0).toUpperCase()}
             </div>
 
-            <div>
-              <h1>{paciente.nome}</h1>
+            <div className="paciente-header-info">
 
-              <p>
-                {paciente.idade || "--"} anos
-                {paciente.genero && ` • ${paciente.genero}`}
-              </p>
+              {editando ? (
+                <input
+                  className="titulo-input"
+                  value={paciente.nome || ""}
+                  onChange={(e) =>
+                    setPaciente({
+                      ...paciente,
+                      nome: e.target.value,
+                    })
+                  }
+                />
+              ) : (
+                <h1>{paciente.nome}</h1>
+              )}
+
+              <div className="linha-header">
+
+                {editando ? (
+                  <>
+                    <input
+                      type="number"
+                      className="small-input"
+                      value={paciente.idade}
+                      onChange={(e) =>
+                        setPaciente({
+                          ...paciente,
+                          idade: e.target.value,
+                        })
+                      }
+                    />
+
+                    <select
+                      value={paciente.genero}
+                      onChange={(e) =>
+                        setPaciente({
+                          ...paciente,
+                          genero: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="">Gênero</option>
+                      <option>Feminino</option>
+                      <option>Masculino</option>
+                      <option>Outro</option>
+                      <option>Prefiro não informar</option>
+                    </select>
+                  </>
+                ) : (
+                  <p>
+                    {paciente.idade || "--"} anos
+                    {paciente.genero &&
+                      ` • ${paciente.genero}`}
+                  </p>
+                )}
+
+              </div>
+
             </div>
 
           </section>
@@ -92,28 +147,81 @@ function DetalhesPaciente() {
 
               <div className="info-item">
                 <span>Telefone</span>
-                <strong>{paciente.telefone || "-"}</strong>
+
+                {editando ? (
+                  <input
+                    value={paciente.telefone || ""}
+                    onChange={(e) =>
+                      setPaciente({
+                        ...paciente,
+                        telefone: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  <strong>{paciente.telefone || "-"}</strong>
+                )}
               </div>
 
               <div className="info-item">
                 <span>E-mail</span>
-                <strong>{paciente.email || "-"}</strong>
+
+                {editando ? (
+                  <input
+                    value={paciente.email}
+                    onChange={(e) =>
+                      setPaciente({
+                        ...paciente,
+                        email: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  <strong>{paciente.email || "-"}</strong>
+                )}
               </div>
 
               <div className="info-item">
                 <span>Profissão</span>
-                <strong>{paciente.profissao || "-"}</strong>
+
+                {editando ? (
+                  <input
+                    value={paciente.profissao}
+                    onChange={(e) =>
+                      setPaciente({
+                        ...paciente,
+                        profissao: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  <strong>{paciente.profissao || "-"}</strong>
+                )}
               </div>
 
             </div>
 
             <div className="observacoes">
+
               <span>Observações</span>
 
-              <p>
-                {paciente.observacoes ||
-                  "Nenhuma observação cadastrada."}
-              </p>
+              {editando ? (
+                <textarea
+                  value={paciente.observacoes || ""}
+                  onChange={(e) =>
+                    setPaciente({
+                      ...paciente,
+                      observacoes: e.target.value,
+                    })
+                  }
+                />
+              ) : (
+                <p>
+                  {paciente.observacoes ||
+                    "Nenhuma observação cadastrada."}
+                </p>
+              )}
+
             </div>
 
           </section>
@@ -129,7 +237,7 @@ function DetalhesPaciente() {
                 className="modulo-card"
               >
                 <h3>📝 Anamnese</h3>
-                <p>Registrar informações iniciais.</p>
+                <p>Visualizar Anamnese</p>
               </Link>
 
               <Link
@@ -154,12 +262,34 @@ function DetalhesPaciente() {
 
           <div className="actions">
 
-            <Link
-              to={`/pacientes/${paciente.id}/editar`}
-              className="editar-button"
-            >
-              Editar paciente
-            </Link>
+            {!editando ? (
+
+              <button
+                className="editar-button"
+                onClick={() => setEditando(true)}
+              >
+                Editar dados
+              </button>
+
+            ) : (
+
+              <>
+                <button
+                  className="cancelar-button"
+                  onClick={() => setEditando(false)}
+                >
+                  Cancelar
+                </button>
+
+                <button
+                  className="salvar-button"
+                  onClick={salvarPaciente}
+                >
+                  Salvar alterações
+                </button>
+              </>
+
+            )}
 
           </div>
 
