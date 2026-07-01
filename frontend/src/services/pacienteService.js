@@ -64,3 +64,19 @@ export function atualizarPaciente(id, dadosAtualizados) {
     (paciente) => paciente.id === Number(id)
   );
 }
+
+export function salvarAnamnese(idPaciente, respostas) {
+  return atualizarPaciente(idPaciente, {
+    anamnese: {
+      respondida: true,
+      dataResposta: new Date().toISOString(),
+      ...respostas,
+    },
+  });
+}
+
+export function salvarEstruturaPerguntas(idPaciente, estruturaPerguntas) {
+  return atualizarPaciente(idPaciente, {
+    estruturaPerguntas: estruturaPerguntas
+  });
+}

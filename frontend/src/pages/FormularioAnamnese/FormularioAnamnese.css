@@ -1,0 +1,312 @@
+/* ==========================================================================
+   Estilos Gerais da Página de Formulário
+   ========================================================================== */
+
+.formulario-page {
+  min-height: calc(100vh - 70px);
+  background: var(--background);
+  padding: 3rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Modo limpo para o Paciente: Garante foco total no formulário e centralização */
+.formulario-page.clean-mode {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formulario-container {
+  max-width: 850px;
+  margin: 0 auto;
+  width: 100%;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  padding: 2.5rem;
+
+  box-shadow: 0 8px 25px rgba(15, 23, 42, .05);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Botão de Voltar (Exclusivo do Psicólogo)
+   ========================================================================== */
+
+.voltar-button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  
+  color: var(--text-light);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  
+  display: inline-flex;
+  align-items: center;
+  transition: .2s;
+}
+
+.voltar-button-link:hover {
+  color: var(--primary);
+  transform: translateX(-4px); /* Efeito sutil de recuo ao passar o mouse */
+}
+
+.voltar-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--text-light);
+  font-weight: 600;
+  transition: .2s;
+}
+
+.voltar-button:hover {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   Tipografia e Textos
+   ========================================================================== */
+
+.formulario-container h1 {
+  font-size: 2rem;
+  color: var(--text);
+  margin-bottom: .5rem;
+  margin-top: 0;
+}
+
+.subtitle {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Painel de Gerenciamento de Perguntas (Modo Psicóloga)
+   ========================================================================== */
+
+.painel-edicao-psicologo {
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.painel-edicao-psicologo h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.input-add-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.input-add-group input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.input-add-group button {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.input-add-group button:hover {
+  background: #059669;
+}
+
+/* ==========================================================================
+   Formulário e Estrutura dos Campos de Entrada (Inputs)
+   ========================================================================== */
+
+.formulario {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.campo-form-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.campo-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.campo-form-header label {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+/* Botão Vermelho de Excluir Pergunta */
+.btn-excluir-pergunta {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn-excluir-pergunta:hover {
+  background: #fee2e2;
+}
+
+/* Mantido para compatibilidade caso use a classe sem o container */
+.campo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-form label {
+  margin-bottom: .5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campo-form-container input,
+.campo-form-container select,
+.campo-form-container textarea,
+.campo-form input,
+.campo-form select,
+.campo-form textarea {
+  padding: .9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font: inherit;
+  background: white;
+  transition: .2s;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.campo-form-container textarea,
+.campo-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.campo-form-container input:focus,
+.campo-form-container select:focus,
+.campo-form-container textarea:focus,
+.campo-form input:focus,
+.campo-form select:focus,
+.campo-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* Estilo cinza/bloqueado para os campos no modo leitura do psicólogo */
+.campo-form-container input:disabled,
+.campo-form-container select:disabled,
+.campo-form-container textarea:disabled,
+.campo-form input:disabled,
+.campo-form select:disabled,
+.campo-form textarea:disabled {
+  background-color: #f8fafc;
+  color: #64748b;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+
+/* ==========================================================================
+   Botões Principais
+   ========================================================================== */
+
+.primary-button {
+  margin-top: 1rem;
+  padding: 1rem;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: .2s;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Card de Sucesso (Pós-envio)
+   ========================================================================== */
+
+.sucesso-card {
+  max-width: 700px;
+  margin: 2rem auto;
+
+  background: white;
+  border-radius: 24px;
+
+  padding: 3rem;
+  text-align: center;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+  box-sizing: border-box;
+}
+
+.sucesso-icone {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.sucesso-card h1 {
+  font-size: 2rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.sucesso-card p {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.sucesso-card small {
+  display: block;
+  margin-top: 2rem;
+  color: #9ca3af;
+}

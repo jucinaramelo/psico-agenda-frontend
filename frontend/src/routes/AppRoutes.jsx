@@ -8,6 +8,7 @@ import DetalhesPaciente from "../pages/DetalhesPaciente/DetalhesPaciente";
 import Anamnese from "../pages/Anamnese/Anamnese";
 import Agenda from "../pages/Agenda/Agenda";
 import NotFound from "../pages/NotFound/NotFound";
+import FormularioAnamnese from "../pages/FormularioAnamnese/FormularioAnamnese";
 
 function AppRoutes() {
   return (
@@ -29,6 +30,9 @@ function AppRoutes() {
 
         {/* Agenda */}
         <Route path="/agenda" element={<Agenda />} />
+
+        {/* Formulario Anamnese */}
+        <Route path="/formulario/:id" element={<FormularioAnamnese />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
