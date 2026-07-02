@@ -15,9 +15,19 @@ export function adicionarPaciente(paciente) {
   const novoPaciente = {
     id: Date.now(),
     criadoEm: new Date().toISOString(),
+
     anamneses: [],
     evolucoes: [],
     historico: [],
+
+    planoTratamento: {
+      hipotese: "",
+      objetivos: "",
+      abordagem: "",
+      frequencia: "",
+      observacoes: "",
+    },
+
     ...paciente,
   };
 
@@ -78,5 +88,14 @@ export function salvarAnamnese(idPaciente, respostas) {
 export function salvarEstruturaPerguntas(idPaciente, estruturaPerguntas) {
   return atualizarPaciente(idPaciente, {
     estruturaPerguntas: estruturaPerguntas
+  });
+}
+
+export function salvarPlanoTratamento(idPaciente, planoTratamento) {
+  return atualizarPaciente(idPaciente, {
+    planoTratamento: {
+      ...planoTratamento,
+      ultimaAtualizacao: new Date().toISOString(),
+    },
   });
 }

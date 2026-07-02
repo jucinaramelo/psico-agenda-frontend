@@ -136,7 +136,7 @@ function FormularioAnamnese() {
       )}
 
       <div className="formulario-container">
-        <h1>Pré-Anamnese</h1>
+        <h1>Anamnese</h1>
         <p className="subtitle">
           Olá, <strong>{paciente.nome}</strong>! Respondendo às perguntas abaixo, você ajuda a direcionar nosso atendimento.
         </p>

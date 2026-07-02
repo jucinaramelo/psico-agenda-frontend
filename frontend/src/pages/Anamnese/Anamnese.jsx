@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import Navbar from "../../components/Navbar/Navbar";
-import { getPacientes } from "../../services/pacienteService";
+import { getPacientes, salvarPlanoTratamento, } from "../../services/pacienteService";
 
 import "./Anamnese.css";
 console.log("CSS IMPORTADO");
@@ -12,6 +12,15 @@ function Anamnese() {
   const { id } = useParams();
 
   const [paciente, setPaciente] = useState(null);
+
+  const [plano, setPlano] = useState({
+    hipotese: "",
+    objetivos: "",
+    abordagem: "",
+    frequencia: "",
+    observacoes: "",
+    ultimaAtualizacao: null,
+  });
 
   const perguntasPadrao = [
     { id: "estadoCivil", label: "Estado civil" },
@@ -25,12 +34,20 @@ function Anamnese() {
     { id: "expectativa", label: "Expectativas com a terapia", campoFull: true },
   ];
 
+  const [modoEdicao, setModoEdicao] = useState(false);
+
   function carregarDadosPaciente() {
-    const pacientes = getPacientes();
+  const pacientes = getPacientes();
+
     const encontrado = pacientes.find(
       (p) => String(p.id) === id
     );
+
     setPaciente(encontrado);
+
+    if (encontrado?.planoTratamento) {
+      setPlano(encontrado.planoTratamento);
+    }
   }
 
   useEffect(() => {
@@ -74,6 +91,23 @@ function Anamnese() {
     toast.success("Link copiado com sucesso!");
   }
 
+  function alterarPlano(campo, valor) {
+    setPlano((prev) => ({
+      ...prev,
+      [campo]: valor,
+    }));
+  }
+
+  function salvarPlano() {
+    const pacienteAtualizado = salvarPlanoTratamento(paciente.id, plano);
+    setPaciente(pacienteAtualizado);
+    if (pacienteAtualizado.planoTratamento) {
+      setPlano(pacienteAtualizado.planoTratamento);
+    }
+    setModoEdicao(false); // Fecha o formulário após salvar
+    toast.success("Plano de tratamento atualizado!");
+  }
+
   const perguntasParaExibir = paciente.estruturaPerguntas && paciente.estruturaPerguntas.length > 0
     ? paciente.estruturaPerguntas
     : perguntasPadrao;
@@ -109,7 +143,7 @@ function Anamnese() {
                 Copiar link
               </button>
               <Link to={`/formulario/${paciente.id}?mode=view`} className="secondary-button">
-                Visualizar formulário
+                Visualizar
               </Link>
             </div>
           </section>
@@ -147,15 +181,137 @@ function Anamnese() {
           </section>
 
           <section className="card">
-            <h2>Plano de tratamento</h2>
-            <div className="empty-state">
-              <div className="empty-state-icon">👨‍⚕️</div>
-              <h3>Em desenvolvimento</h3>
-              <p>
-                Após analisar as respostas do paciente, o psicólogo poderá registrar hipóteses,
-                objetivos terapêuticos e o plano de tratamento.
-              </p>
+            <div className="plano-header">
+              <h2>Plano de tratamento</h2>
+              <div className="plano-header-actions">
+                {plano.ultimaAtualizacao && (
+                  <span className="plano-info">
+                    ⏱️ Atualizado em: {new Date(plano.ultimaAtualizacao).toLocaleString("pt-BR")}
+                  </span>
+                )}
+
+                {/* BOTÃO EDITAR CORRIGIDO: Sem o style fixo para obedecer ao CSS */}
+                {!modoEdicao && plano.ultimaAtualizacao && (
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() => setModoEdicao(true)}
+                  >
+                    Editar
+                  </button>
+                )}
+              </div>
             </div>
+            
+            {!modoEdicao && plano.ultimaAtualizacao ? (
+              <div className="plano-leitura">
+                <div className="campo-leitura">
+                  <span>Hipótese diagnóstica</span>
+                  <p>{plano.hipotese || "Não informada"}</p>
+                </div>
+
+                <div className="campo-leitura">
+                  <span>Objetivos terapêuticos</span>
+                  <p>{plano.objetivos || "Não informados"}</p>
+                </div>
+
+                <div className="plano-campos-row">
+                  <div className="campo-leitura">
+                    <span>Abordagem</span>
+                    <strong>{plano.abordagem || "Não informada"}</strong>
+                  </div>
+                  <div className="campo-leitura">
+                    <span>Frequência</span>
+                    <strong>{plano.frequencia || "Não informada"}</strong>
+                  </div>
+                </div>
+
+                <div className="campo-leitura">
+                  <span>Observações</span>
+                  <p>{plano.observacoes || "Nenhuma observação"}</p>
+                </div>
+
+                {!plano.ultimaAtualizacao && (
+                  <button type="button" className="btn-salvar-plano" onClick={() => setModoEdicao(true)}>
+                    Criar Plano de Tratamento
+                  </button>
+                )}
+              </div>
+            ) : (
+              /* SE ESTIVER EM MODO DE EDIÇÃO (OU SE FOR O PRIMEIRO CADASTRO): MOSTRA O FORMULÁRIO */
+              <div className="plano-form">
+                <div className="campo-form">
+                  <label>Hipótese diagnóstica</label>
+                  <textarea
+                    rows="3"
+                    value={plano.hipotese}
+                    onChange={(e) => alterarPlano("hipotese", e.target.value)}
+                  />
+                </div>
+
+                <div className="campo-form">
+                  <label>Objetivos terapêuticos</label>
+                  <textarea
+                    rows="3"
+                    value={plano.objetivos}
+                    onChange={(e) => alterarPlano("objetivos", e.target.value)}
+                  />
+                </div>
+
+                <div className="plano-campos-row">
+                  <div className="campo-form">
+                    <label>Abordagem</label>
+                    <select value={plano.abordagem} onChange={(e) => alterarPlano("abordagem", e.target.value)}>
+                      <option value="">Selecione</option>
+                      <option>Terapia Cognitivo-Comportamental</option>
+                      <option>Psicanálise</option>
+                      <option>Humanista</option>
+                      <option>Gestalt</option>
+                      <option>Sistêmica</option>
+                      <option>Outra</option>
+                    </select>
+                  </div>
+
+                  <div className="campo-form">
+                    <label>Frequência</label>
+                    <select value={plano.frequencia} onChange={(e) => alterarPlano("frequencia", e.target.value)}>
+                      <option value="">Selecione</option>
+                      <option>Semanal</option>
+                      <option>Quinzenal</option>
+                      <option>Mensal</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="campo-form">
+                  <label>Observações</label>
+                  <textarea
+                    rows="4"
+                    value={plano.observacoes}
+                    onChange={(e) => alterarPlano("observacoes", e.target.value)}
+                  />
+                </div>
+
+                  <div className="plano-action-footer">
+                    {plano.ultimaAtualizacao && (
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={() => setModoEdicao(false)}
+                      >
+                        Cancelar
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={salvarPlano}
+                    >
+                      Salvar
+                    </button>
+                  </div>
+              </div>
+            )}
           </section>
         </div>
       </main>
