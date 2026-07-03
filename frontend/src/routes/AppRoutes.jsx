@@ -9,6 +9,7 @@ import Anamnese from "../pages/Anamnese/Anamnese";
 import Agenda from "../pages/Agenda/Agenda";
 import NotFound from "../pages/NotFound/NotFound";
 import FormularioAnamnese from "../pages/FormularioAnamnese/FormularioAnamnese";
+import Evolucao from "../pages/Evolucao/Evolucao";
 
 function AppRoutes() {
   return (
@@ -33,6 +34,9 @@ function AppRoutes() {
 
         {/* Formulario Anamnese */}
         <Route path="/formulario/:id" element={<FormularioAnamnese />} />
+
+        {/* Evolução */}
+        <Route path="/pacientes/:id/evolucao" element={<Evolucao />} />
 
         {/* 404 */}
         <Route path="*" element={<NotFound />} />

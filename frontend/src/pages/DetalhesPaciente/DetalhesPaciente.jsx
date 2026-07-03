@@ -241,19 +241,19 @@ function DetalhesPaciente() {
               </Link>
 
               <Link
-                to={`/pacientes/${paciente.id}/evolucoes`}
+                to={`/pacientes/${paciente.id}/evolucao`}
                 className="modulo-card"
               >
-                <h3>📖 Evoluções</h3>
+                <h3>📖 Evolução</h3>
                 <p>Registrar atendimentos.</p>
               </Link>
 
               <Link
-                to={`/pacientes/${paciente.id}/consultas`}
+                to="/agenda"
                 className="modulo-card"
               >
-                <h3>📅 Consultas</h3>
-                <p>Visualizar agenda do paciente.</p>
+                <h3>📅 Agenda</h3>
+                <p>Visualizar agenda.</p>
               </Link>
 
             </div>

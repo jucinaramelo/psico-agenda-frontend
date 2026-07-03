@@ -17,7 +17,7 @@ export function adicionarPaciente(paciente) {
     criadoEm: new Date().toISOString(),
 
     anamneses: [],
-    evolucoes: [],
+    evolucao: [],
     historico: [],
 
     planoTratamento: {
@@ -97,5 +97,35 @@ export function salvarPlanoTratamento(idPaciente, planoTratamento) {
       ...planoTratamento,
       ultimaAtualizacao: new Date().toISOString(),
     },
+  });
+}
+
+export function salvarEvolucao(idPaciente, evolucao) {
+  const paciente = buscarPacientePorId(idPaciente);
+
+  if (!paciente) return null;
+
+  const evolucoes = paciente.evolucoes || [];
+
+  const novaEvolucao = {
+    id: Date.now(),
+    criadoEm: new Date().toISOString(),
+    ...evolucao,
+  };
+
+  return atualizarPaciente(idPaciente, {
+    evolucoes: [novaEvolucao, ...evolucoes],
+  });
+}
+
+export function removerEvolucao(idPaciente, idEvolucao) {
+  const paciente = buscarPacientePorId(idPaciente);
+
+  if (!paciente) return null;
+
+  return atualizarPaciente(idPaciente, {
+    evolucoes: paciente.evolucoes.filter(
+      (e) => e.id !== idEvolucao
+    ),
   });
 }
