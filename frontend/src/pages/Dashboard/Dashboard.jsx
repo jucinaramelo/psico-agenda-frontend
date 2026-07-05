@@ -6,6 +6,39 @@ import "./Dashboard.css";
 function Dashboard() {
   const pacientes = getPacientes();
 
+  const consultas = pacientes.flatMap(
+    (paciente) => paciente.consultas || []
+  );
+
+  const evolucoes = pacientes.flatMap(
+    (paciente) => paciente.evolucoes || []
+  );
+
+  const hoje = new Date().toISOString().split("T")[0];
+
+  const consultasHoje = consultas.filter(
+    (consulta) =>
+      consulta.data === hoje &&
+      consulta.status === "Agendada"
+  );
+
+  const proximasConsultas = pacientes
+    .flatMap((paciente) =>
+      (paciente.consultas || []).map((consulta) => ({
+        ...consulta,
+        paciente,
+      }))
+    )
+    .filter(
+      (consulta) => consulta.status === "Agendada"
+    )
+    .sort((a, b) => {
+      const dataA = `${a.data} ${a.horario}`;
+      const dataB = `${b.data} ${b.horario}`;
+      return new Date(dataA) - new Date(dataB);
+    })
+    .slice(0, 5);
+
   return (
     <>
       <Navbar />
@@ -28,7 +61,7 @@ function Dashboard() {
           <div className="stat-card">
             <div className="stat-icon">📅</div>
             <div>
-              <strong>0</strong>
+              <strong>{consultas.length}</strong>
               <span>Consultas</span>
             </div>
           </div>
@@ -36,7 +69,7 @@ function Dashboard() {
           <div className="stat-card">
             <div className="stat-icon">📋</div>
             <div>
-              <strong>0</strong>
+              <strong>{evolucoes.length}</strong>
               <span>Evoluções</span>
             </div>
           </div>
@@ -44,7 +77,7 @@ function Dashboard() {
           <div className="stat-card">
             <div className="stat-icon">🗓️</div>
             <div>
-              <strong>0</strong>
+              <strong>{consultasHoje.length}</strong>
               <span>Hoje</span>
             </div>
           </div>
@@ -57,9 +90,37 @@ function Dashboard() {
               <Link to="/agenda">Ver todas →</Link>
             </div>
 
-            <p className="empty-message">
-              Nenhuma consulta agendada.
-            </p>
+            {proximasConsultas.length === 0 ? (
+              <p className="empty-message">
+                Nenhuma consulta agendada.
+              </p>
+            ) : (
+              proximasConsultas.map((consulta) => (
+                <Link
+                  key={consulta.id}
+                  to={`/pacientes/${consulta.paciente.id}/agenda`}
+                  className="appointment-item"
+                >
+                  <div className="avatar">
+                    {consulta.paciente.nome.charAt(0).toUpperCase()}
+                  </div>
+
+                  <div>
+                    <strong>{consulta.paciente.nome}</strong>
+
+                    <p>
+                      {new Date(consulta.data).toLocaleDateString("pt-BR")}
+                      {" • "}
+                      {consulta.horario}
+                    </p>
+
+                    <small>
+                      {consulta.modalidade} • {consulta.status}
+                    </small>
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
 
           <div className="dashboard-panel">

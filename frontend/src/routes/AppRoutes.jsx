@@ -37,7 +37,10 @@ function AppRoutes() {
 
         {/* Evolução */}
         <Route path="/pacientes/:id/evolucao" element={<Evolucao />} />
-
+        
+        {/* Agenda do paciente */}
+        <Route path="/pacientes/:id/agenda" element={<Agenda />} />
+        
         {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>

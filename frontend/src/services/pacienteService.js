@@ -17,7 +17,8 @@ export function adicionarPaciente(paciente) {
     criadoEm: new Date().toISOString(),
 
     anamneses: [],
-    evolucao: [],
+    consultas: [],
+    evolucoes: [],
     historico: [],
 
     planoTratamento: {
@@ -127,5 +128,51 @@ export function removerEvolucao(idPaciente, idEvolucao) {
     evolucoes: paciente.evolucoes.filter(
       (e) => e.id !== idEvolucao
     ),
+  });
+}
+
+export function salvarConsulta(idPaciente, consulta) {
+  const paciente = buscarPacientePorId(idPaciente);
+
+  if (!paciente) return null;
+
+  const consultas = paciente.consultas || [];
+
+  const novaConsulta = {
+    id: Date.now(),
+    criadoEm: new Date().toISOString(),
+    ...consulta,
+  };
+
+  return atualizarPaciente(idPaciente, {
+    consultas: [novaConsulta, ...consultas],
+  });
+}
+
+export function removerConsulta(idPaciente, idConsulta) {
+  const paciente = buscarPacientePorId(idPaciente);
+
+  if (!paciente) return null;
+
+  return atualizarPaciente(idPaciente, {
+    consultas: paciente.consultas.filter(
+      (consulta) => consulta.id !== idConsulta
+    ),
+  });
+}
+
+export function atualizarConsulta(idPaciente, consultaAtualizada) {
+  const paciente = buscarPacientePorId(idPaciente);
+
+  if (!paciente) return null;
+
+  const consultasAtualizadas = paciente.consultas.map((consulta) =>
+    consulta.id === consultaAtualizada.id
+      ? consultaAtualizada
+      : consulta
+  );
+
+  return atualizarPaciente(idPaciente, {
+    consultas: consultasAtualizadas,
   });
 }

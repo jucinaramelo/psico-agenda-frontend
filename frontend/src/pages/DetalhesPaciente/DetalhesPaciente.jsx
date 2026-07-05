@@ -249,11 +249,11 @@ function DetalhesPaciente() {
               </Link>
 
               <Link
-                to="/agenda"
+                to={`/pacientes/${paciente.id}/agenda`}
                 className="modulo-card"
               >
                 <h3>📅 Agenda</h3>
-                <p>Visualizar agenda.</p>
+                <p>Gerenciar consultas do paciente.</p>
               </Link>
 
             </div>
