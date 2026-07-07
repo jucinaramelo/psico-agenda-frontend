@@ -29,7 +29,7 @@ function AppRoutes() {
         {/* Anamnese */}
         <Route path="/pacientes/:id/anamnese" element={<Anamnese />} />
 
-        {/* Agenda */}
+        {/* Agenda Geral*/}
         <Route path="/agenda" element={<Agenda />} />
 
         {/* Formulario Anamnese */}

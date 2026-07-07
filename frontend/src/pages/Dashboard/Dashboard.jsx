@@ -6,6 +6,24 @@ import "./Dashboard.css";
 function Dashboard() {
   const pacientes = getPacientes();
 
+  function dataHoje() {
+    const hoje = new Date();
+
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoje.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+  }
+
+  function formatarData(data) {
+    if (!data) return "";
+
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
+  }
+
   const consultas = pacientes.flatMap(
     (paciente) => paciente.consultas || []
   );
@@ -14,7 +32,7 @@ function Dashboard() {
     (paciente) => paciente.evolucoes || []
   );
 
-  const hoje = new Date().toISOString().split("T")[0];
+  const hoje = dataHoje();
 
   const consultasHoje = consultas.filter(
     (consulta) =>
@@ -29,13 +47,12 @@ function Dashboard() {
         paciente,
       }))
     )
-    .filter(
-      (consulta) => consulta.status === "Agendada"
-    )
+    .filter((consulta) => consulta.status === "Agendada")
     .sort((a, b) => {
-      const dataA = `${a.data} ${a.horario}`;
-      const dataB = `${b.data} ${b.horario}`;
-      return new Date(dataA) - new Date(dataB);
+      const dataA = new Date(`${a.data}T${a.horario}`);
+      const dataB = new Date(`${b.data}T${b.horario}`);
+
+      return dataA - dataB;
     })
     .slice(0, 5);
 
@@ -52,6 +69,7 @@ function Dashboard() {
         <section className="dashboard-stats">
           <div className="stat-card">
             <div className="stat-icon">👥</div>
+
             <div>
               <strong>{pacientes.length}</strong>
               <span>Pacientes</span>
@@ -60,6 +78,7 @@ function Dashboard() {
 
           <div className="stat-card">
             <div className="stat-icon">📅</div>
+
             <div>
               <strong>{consultas.length}</strong>
               <span>Consultas</span>
@@ -68,6 +87,7 @@ function Dashboard() {
 
           <div className="stat-card">
             <div className="stat-icon">📋</div>
+
             <div>
               <strong>{evolucoes.length}</strong>
               <span>Evoluções</span>
@@ -76,6 +96,7 @@ function Dashboard() {
 
           <div className="stat-card">
             <div className="stat-icon">🗓️</div>
+
             <div>
               <strong>{consultasHoje.length}</strong>
               <span>Hoje</span>
@@ -84,10 +105,15 @@ function Dashboard() {
         </section>
 
         <section className="dashboard-grid">
+
           <div className="dashboard-panel">
+
             <div className="panel-header">
               <h2>Próximas Consultas</h2>
-              <Link to="/agenda">Ver todas →</Link>
+
+              <Link to="/agenda">
+                Ver todas →
+              </Link>
             </div>
 
             {proximasConsultas.length === 0 ? (
@@ -109,7 +135,7 @@ function Dashboard() {
                     <strong>{consulta.paciente.nome}</strong>
 
                     <p>
-                      {new Date(consulta.data).toLocaleDateString("pt-BR")}
+                      {formatarData(consulta.data)}
                       {" • "}
                       {consulta.horario}
                     </p>
@@ -124,9 +150,13 @@ function Dashboard() {
           </div>
 
           <div className="dashboard-panel">
+
             <div className="panel-header">
               <h2>Pacientes Recentes</h2>
-              <Link to="/pacientes">Ver todos →</Link>
+
+              <Link to="/pacientes">
+                Ver todos →
+              </Link>
             </div>
 
             {pacientes.length === 0 ? (
@@ -134,24 +164,31 @@ function Dashboard() {
                 Nenhum paciente cadastrado.
               </p>
             ) : (
-              pacientes.slice(-3).reverse().map((paciente) => (
-                <Link
-                  to={`/pacientes/${paciente.id}`}
-                  className="patient-item"
-                  key={paciente.id}
-                >
-                  <div className="avatar">
-                    {paciente.nome.charAt(0).toUpperCase()}
-                  </div>
+              pacientes
+                .slice(-3)
+                .reverse()
+                .map((paciente) => (
+                  <Link
+                    key={paciente.id}
+                    to={`/pacientes/${paciente.id}`}
+                    className="patient-item"
+                  >
+                    <div className="avatar">
+                      {paciente.nome.charAt(0).toUpperCase()}
+                    </div>
 
-                  <div>
-                    <strong>{paciente.nome}</strong>
-                    <p>{paciente.idade} anos · {paciente.telefone}</p>
-                  </div>
-                </Link>
-              ))
+                    <div>
+                      <strong>{paciente.nome}</strong>
+
+                      <p>
+                        {paciente.idade} anos · {paciente.telefone}
+                      </p>
+                    </div>
+                  </Link>
+                ))
             )}
           </div>
+
         </section>
       </main>
     </>

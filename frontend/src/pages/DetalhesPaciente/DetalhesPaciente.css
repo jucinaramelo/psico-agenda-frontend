@@ -69,6 +69,22 @@
   color: var(--text-light);
 }
 
+.paciente-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  background: var(--primary-light, #f3e8ff); 
+  color: var(--primary, #7c3aed);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
 .info-card,
 .modulos-card {
   background: var(--surface);
