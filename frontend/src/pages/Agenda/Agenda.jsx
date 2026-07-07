@@ -38,6 +38,14 @@ function Agenda() {
     }
   }, [id]);
 
+  function formatarData(data) {
+    if (!data) return "";
+
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
+  }
+
   function carregarPaciente() {
     const encontrado = buscarPacientePorId(id);
 
@@ -58,8 +66,27 @@ function Agenda() {
     );
 
     lista.sort((a, b) => {
-      const dataA = new Date(`${a.data} ${a.horario}`);
-      const dataB = new Date(`${b.data} ${b.horario}`);
+      const [anoA, mesA, diaA] = a.data.split("-");
+      const [horaA, minutoA] = a.horario.split(":");
+
+      const [anoB, mesB, diaB] = b.data.split("-");
+      const [horaB, minutoB] = b.horario.split(":");
+
+      const dataA = new Date(
+        Number(anoA),
+        Number(mesA) - 1,
+        Number(diaA),
+        Number(horaA),
+        Number(minutoA)
+      );
+
+      const dataB = new Date(
+        Number(anoB),
+        Number(mesB) - 1,
+        Number(diaB),
+        Number(horaB),
+        Number(minutoB)
+      );
 
       return dataA - dataB;
     });
@@ -73,7 +100,6 @@ function Agenda() {
       [campo]: valor,
     }));
   }
-  console.log("Consulta:", consulta);
 
   function salvar() {
     if (!consulta.data || !consulta.horario) {
@@ -250,7 +276,7 @@ function Agenda() {
                         <div>
 
                           <h3>
-                            {new Date(consulta.data).toLocaleDateString("pt-BR")}
+                            {formatarData(consulta.data)}
                             {" • "}
                             {consulta.horario}
                           </h3>
@@ -319,7 +345,7 @@ function Agenda() {
                         <div>
 
                           <h3>
-                            {new Date(consulta.data).toLocaleDateString("pt-BR")}
+                            {formatarData(consulta.data)}
                             {" • "}
                             {consulta.horario}
                           </h3>
