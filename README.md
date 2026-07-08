@@ -4,8 +4,8 @@ Projeto final desenvolvido para a disciplina **ECT3699 – Desenvolvimento Web F
 
 ## 🚀 Link da Aplicação
 
-O sistema está hospedado e pronto para uso em:  
-🔗 **[https://psico-agenda-pi.vercel.app/](https://psico-agenda-pi.vercel.app/)**
+O sistema está hospedado e pronto para uso:  
+🔗 **[Visualizar Psico Agenda](https://psico-agenda-pi.vercel.app/)**
 
 ---
 
