@@ -1,24 +1,37 @@
 # Psico Agenda
 
-Projeto desenvolvido para a disciplina **ECT3699 – Desenvolvimento Web FrontEnd**.
+Projeto final desenvolvido para a disciplina **ECT3699 – Desenvolvimento Web FrontEnd**.
 
-## Sobre o projeto
+## 🚀 Link da Aplicação
 
-O Psico Agenda é uma aplicação web voltada para organização clínica e acompanhamento psicológico. O sistema busca auxiliar profissionais da psicologia no gerenciamento de pacientes, anamneses, evoluções e consultas.
+O sistema está hospedado e pronto para uso em:  
+🔗 **[https://psico-agenda-pi.vercel.app/](https://psico-agenda-pi.vercel.app/)**
 
-## Documentação
+---
 
-A documentação do projeto está disponível em:
+## 💻 Sobre o Projeto
 
-```txt
-docs/projeto-final.md
-```
+O **Psico Agenda** é uma aplicação web voltada para a organização clínica e acompanhamento psicológico. O sistema auxilia profissionais da psicologia no gerenciamento de:
 
-## Tecnologias previstas
+- **Dashboard:** Painel visual com estatísticas dos atendimentos.
+- **Agenda:** Controle de horários e consultas.
+- **Pacientes:** Cadastro e listagem centralizada.
+- **Anamnese e Plano de Tratamento:** Registro de prontuários com modos de leitura e escrita estruturados.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
 
 - React
 - Vite
 - React Router DOM
-- CSS
+- CSS Customizado
 - LocalStorage
 
+---
+
+## 📂 Documentação
+
+A documentação detalhada do projeto está disponível em:
+```txt
+docs/projeto-final.md
